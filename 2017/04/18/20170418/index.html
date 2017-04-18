@@ -91,15 +91,15 @@
 <meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="观察者模式「java实现」">
-<meta property="og:url" content="http://yoursite.com/2017/04/18/20170418/index.html">
+<meta property="og:url" content="http://fzliang.cn/2017/04/18/20170418/index.html">
 <meta property="og:site_name" content="fzliang">
 <meta property="og:description" content="观察者模式是对象的行为模式，又叫发布-订阅(Publish/Subscribe)模式、模型-视图(Model/View)模式、源-监听器(Source/Listener)模式或从属者(Dependents)模式。 观察者模式定义了一种一对多的依赖关系，让多个观察者对象同时监听某一个主题对象。这个主题对象在状态上发生变化时，会通知所有观察者对象，使它们能够自动更新自己。  观察者模式所涉及的角色有">
-<meta property="og:image" content="http://yoursite.com/2017/04/18/20170418/1.png">
-<meta property="og:updated_time" content="2017-04-18T16:16:50.117Z">
+<meta property="og:image" content="http://fzliang.cn/2017/04/18/20170418/1.png">
+<meta property="og:updated_time" content="2017-04-18T23:41:44.297Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="观察者模式「java实现」">
 <meta name="twitter:description" content="观察者模式是对象的行为模式，又叫发布-订阅(Publish/Subscribe)模式、模型-视图(Model/View)模式、源-监听器(Source/Listener)模式或从属者(Dependents)模式。 观察者模式定义了一种一对多的依赖关系，让多个观察者对象同时监听某一个主题对象。这个主题对象在状态上发生变化时，会通知所有观察者对象，使它们能够自动更新自己。  观察者模式所涉及的角色有">
-<meta name="twitter:image" content="http://yoursite.com/2017/04/18/20170418/1.png">
+<meta name="twitter:image" content="http://fzliang.cn/2017/04/18/20170418/1.png">
 
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/18/20170418/"/>
+  <link rel="canonical" href="http://fzliang.cn/2017/04/18/20170418/"/>
 
 
 
@@ -197,7 +197,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -207,7 +207,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            About
+            Über
           </a>
         </li>
       
@@ -217,7 +217,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -260,7 +260,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/18/20170418/">
+  <link itemprop="mainEntityOfPage" href="http://fzliang.cn/2017/04/18/20170418/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="fzliang">
@@ -297,7 +297,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-18T23:23:22+08:00">
                 2017-04-18
@@ -367,7 +367,7 @@
 <p>ConSubject.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConSubject</span> <span class="keyword">extends</span> <span class="title">Subject</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String state;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(String newState)</span> </span>&#123;</div><div class="line">        state = newState;</div><div class="line">        System.out.println(<span class="string">"主题2状态为："</span> + state);</div><div class="line">        <span class="keyword">this</span>.nodifyObservers(state);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>ConcreteObserver.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteObserver</span> <span class="keyword">implements</span> <span class="title">Observer</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String observerState;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(String state)</span> </span>&#123;</div><div class="line">        observerState = state;</div><div class="line">        System.out.println(<span class="string">"观察者1状态为："</span> + observerState);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>ConObserver.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConObserver</span> <span class="keyword">implements</span> <span class="title">Observer</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> String observerState;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(String state)</span> </span>&#123;</div><div class="line">        observerState = state;</div><div class="line">        System.out.println(<span class="string">"观察者2状态为："</span> + observerState);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>main.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="comment">//创建主题对象</span></div><div class="line">        ConcreteSubject subject1 = <span class="keyword">new</span> ConcreteSubject();</div><div class="line">        ConSubject      subject2 = <span class="keyword">new</span> ConSubject();</div><div class="line"></div><div class="line">        <span class="comment">//将观察者对象登记到主题对象上</span></div><div class="line">        subject1.attach(<span class="keyword">new</span> ConcreteObserver());</div><div class="line">        subject2.attach(<span class="keyword">new</span> ConObserver());</div><div class="line">        <span class="comment">//改变主题对象的状态</span></div><div class="line">        subject1.change(<span class="string">"new state"</span>);</div><div class="line">        subject2.change(<span class="string">"new state"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>main.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="comment">//创建主题对象</span></div><div class="line">        ConcreteSubject subject1 = <span class="keyword">new</span> ConcreteSubject();</div><div class="line">        ConSubject      subject2 = <span class="keyword">new</span> ConSubject();</div><div class="line"></div><div class="line">        Observer observer1 = <span class="keyword">new</span> ConcreteObserver();</div><div class="line">        Observer observer2 = <span class="keyword">new</span> ConObserver();</div><div class="line"></div><div class="line">        <span class="comment">//将观察者对象登记到主题对象上</span></div><div class="line">        subject1.attach(observer1);</div><div class="line">        subject2.attach(observer2);</div><div class="line"></div><div class="line">        <span class="comment">//改变主题对象的状态</span></div><div class="line">        subject1.change(<span class="string">"new state1"</span>);</div><div class="line">        subject2.change(<span class="string">"new state2"</span>);</div><div class="line">        subject1.detach(observer1);</div><div class="line">        subject1.change(<span class="string">"new state3"</span>);</div><div class="line">        subject2.change(<span class="string">"new state4"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>运行结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Attched an observer</div><div class="line">Attched an observer</div><div class="line">主题1状态为：new state</div><div class="line">观察者1状态为：new state</div><div class="line">主题2状态为：new state</div><div class="line">观察者2状态为：new state</div></pre></td></tr></table></figure></p>
 
       
@@ -425,7 +425,7 @@
         <div class="ds-share flat" data-thread-key="2017/04/18/20170418/"
      data-title="观察者模式「java实现」"
      data-content=""
-     data-url="http://yoursite.com/2017/04/18/20170418/">
+     data-url="http://fzliang.cn/2017/04/18/20170418/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -453,7 +453,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2017/04/18/20170418/"
-           data-title="观察者模式「java实现」" data-url="http://yoursite.com/2017/04/18/20170418/">
+           data-title="观察者模式「java实现」" data-url="http://fzliang.cn/2017/04/18/20170418/">
       </div>
     
   </div>
@@ -492,7 +492,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">10</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -503,7 +503,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">7</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
